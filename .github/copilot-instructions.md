@@ -15,6 +15,7 @@ Authoritative guidance for Copilot responses in this repository.
 - Format with black; explicit imports and type hints preferred.
 - Keep functions small and pure when practical; avoid hidden globals.
 - Default to src/ layout imports (package is project_name).
+- Use snake_case for variables/functions per Python conventions; follow standard Python best practices (PEP 8) unless noted otherwise.
 
 ## Testing
 - Runner: pytest.
