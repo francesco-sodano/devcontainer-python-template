@@ -2,16 +2,13 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "Ubuntu-Python",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "Dockerfile",
+	// Use local Dockerfile for build. More info: https://containers.dev/guide/dockerfile
+	"dockerFile": "Dockerfile",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/powershell:1": {},
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers/features/python:1": {
-			"version": "3.12"
-		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"installBicep": "true"
 		},
@@ -30,6 +27,19 @@
 
 	// Configure tool-specific properties.
 	"customizations": {
+		"settings": {
+			"files.eol": "\n",
+			"editor.formatOnSave": true,
+			"python.testing.pytestArgs": ["."],
+			"python.testing.unittestEnabled": false,
+			"python.testing.pytestEnabled": true,
+			"python.formatting.provider": "black",
+			"python.linting.mypyEnabled": true,
+			"python.linting.enabled": true,
+			"remote.extensionKind": {
+				"ms-azuretools.vscode-docker": "workspace"
+			}
+		},
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
