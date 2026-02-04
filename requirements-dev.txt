@@ -1,0 +1,4 @@
+# Add development dependencies here to be included in the Base Dev Container
+black==26.1.0
+mypy==1.19.1
+pytest==9.0.2
