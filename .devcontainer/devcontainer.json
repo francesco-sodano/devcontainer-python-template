@@ -2,6 +2,8 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "Ubuntu-Python",
+	// Use the repo root as build context so shared files (e.g., requirements-dev.txt) are available during image build.
+	"context": "..",
 	// Use local Dockerfile for build. More info: https://containers.dev/guide/dockerfile
 	"dockerFile": "Dockerfile",
 
