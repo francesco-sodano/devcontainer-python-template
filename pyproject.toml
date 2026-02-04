@@ -1,7 +1,7 @@
 [project]
-name = "devcontainer-python-template"
+name = "project_name"
 version = "0.1.0"
-description = "Python devcontainer starter template."
+description = "Description of the project."
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "Francesco Sodano" }]
