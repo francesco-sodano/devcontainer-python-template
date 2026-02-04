@@ -13,8 +13,8 @@ if [ ! -d "$VENV_PATH" ]; then
 fi
 
 . "$VENV_PATH/bin/activate"
-# Install from pyproject, including dev dependencies.
-uv sync --python "$VENV_PATH/bin/python" --dev
+# Install from pyproject, including the dev dependency group.
+uv sync --python "$VENV_PATH/bin/python" --group dev
 
 
 # Auto-activate venv for future shells

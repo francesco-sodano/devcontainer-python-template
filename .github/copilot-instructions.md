@@ -6,8 +6,8 @@ Update the bullets to match the team’s conventions.
 ## Project context
 - Language: Python 3.12
 - Package manager: uv (single source of truth is pyproject.toml)
-- Dependency policy: runtime deps go in [project] dependencies; dev-only tools (black 26.1.0, mypy 1.19.1, pytest 9.0.2) live in [tool.uv] dev-dependencies. No requirements.txt/requirements-dev.txt files.
-- Post-create installs via `uv sync --dev` into .venv; use `uv sync` if you want runtime-only installs.
+- Dependency policy: runtime deps go in [project] dependencies; dev-only tools (black 26.1.0, mypy 1.19.1, pytest 9.0.2) live in [dependency-groups] dev. No requirements.txt/requirements-dev.txt files.
+- Post-create installs via `uv sync --group dev` into .venv; use `uv sync` if you want runtime-only installs.
 
 ## Code style
 - Format with black; prefer explicit imports and type hints.
