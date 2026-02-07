@@ -2,7 +2,7 @@ version: 2
 
 updates:
 
-  - package-ecosystem: "uv"
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -11,7 +11,7 @@ updates:
       timezone: "UTC"
     open-pull-requests-limit: 5
     rebase-strategy: "auto"
-    # Dependabot inspects pyproject.toml/uv.lock for Python deps (uv ecosystem).
+    # Dependabot inspects pyproject.toml for Python deps (via pip ecosystem).
 
   - package-ecosystem: "github-actions"
     directory: "/"
