@@ -10,8 +10,8 @@ VENV_PATH="$WORKSPACE_DIR/.venv"
 
 if [ ! -d "$VENV_PATH" ]; then
 	# Ensure the latest managed Python 3.12 is installed and used
-	uv python install 3.12
-	uv venv --python 3.12 "$VENV_PATH"
+	uv python install 3.12.10
+	uv venv --python 3.12.10 "$VENV_PATH"
 fi
 
 . "$VENV_PATH/bin/activate"
