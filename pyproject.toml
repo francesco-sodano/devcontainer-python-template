@@ -3,7 +3,7 @@ name = "project_name"
 version = "0.1.0"
 description = "Description of the project."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12.10"
 authors = [{ name = "Francesco Sodano" }]
 license = { text = "MIT" }
 dependencies = []
