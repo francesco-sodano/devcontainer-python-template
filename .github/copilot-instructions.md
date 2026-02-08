@@ -90,6 +90,24 @@ The project in this repository has the following specifications:
 - **Citations:** When implementing logic based on external APIs or libraries, cite the source documentation URL in a code comment.
 - **Commit Messages:** Write clear and descriptive commit messages that explain the "what" and "why" of your changes.
 
+## Issue Templates & Autonomous Workflow
+This repository uses structured GitHub Issue Templates designed for AI agents to work autonomously:
+
+- **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Used when proposing new features or enhancements. Contains structured sections for summary, motivation, proposed solution, acceptance criteria, test plan, technical notes, out-of-scope items, and references.
+- **Bug Report** (`.github/ISSUE_TEMPLATE/bug_report.yml`): Used when reporting bugs. Contains structured sections for bug summary, steps to reproduce, expected/actual behavior, affected code location, root cause analysis, proposed fix, acceptance criteria, test plan, environment, and references.
+
+### Working from an Issue
+When assigned a GitHub Issue created from one of these templates, follow this workflow:
+1. **Read the full issue** — every section contains implementation-critical information.
+2. **Follow the project standards** embedded in the issue template header (code style, testing, type checking, etc.).
+3. **Follow the Proposed Solution / Proposed Fix** — the human author has specified the approach; implement it as described.
+4. **Satisfy all Acceptance Criteria** — treat these as a mandatory checklist. Every box must be checked.
+5. **Implement the Test Plan** — write the exact tests described in the issue.
+6. **Respect Out of Scope** (features) — do NOT implement anything listed there.
+7. **Run validation** — execute `black . && mypy src/ && pytest` and ensure zero errors before submitting.
+8. **For bug fixes** — always write a failing test FIRST that reproduces the bug, then implement the fix.
+9. **Ask for missing information** — if any section of the issue is incomplete, ambiguous, or lacks the detail needed to implement the solution, ask the issue author for clarification before proceeding. Do NOT guess or make assumptions about unclear requirements.
+
 ## Communication
 - **Tone:** Always communicate in a casual, friendly, yet professional tone.
 - **Narrate Your Plan:** Announce your actions and thought process before you execute them. Use the examples below as a guide.

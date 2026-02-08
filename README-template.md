@@ -45,8 +45,12 @@ This document explains how to create a new Python 3.12 project from the **devcon
 │   └── scripts/
 │       └── postCreate.sh       # Runs after container creation (installs Python, syncs deps)
 ├── .github/
-│   ├── copilot-instructions.md # GitHub Copilot custom instructions
+│   ├── copilot-instructions.md # GitHub Copilot & AI agent custom instructions
 │   ├── dependabot.yml          # Dependabot config (uv, GitHub Actions, devcontainers)
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── config.yml          # Template chooser config (disables blank issues)
+│   │   ├── feature_request.yml # Feature request template (for AI agents)
+│   │   └── bug_report.yml      # Bug report template (for AI agents)
 │   └── workflows/
 │       └── update-lockfile.yml # Auto-updates uv.lock on dependency changes
 ├── scripts/
@@ -404,7 +408,28 @@ The template includes a `.github/dependabot.yml` that automatically checks for u
 
 ### Copilot instructions
 
-`.github/copilot-instructions.md` provides project-aware context to GitHub Copilot. Update the layout references and project name after renaming.
+`.github/copilot-instructions.md` provides project-aware context to GitHub Copilot and AI agents. Update the layout references and project name after renaming.
+
+### Issue Templates (AI Agent Workflow)
+
+The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLATE/` designed to be filled out by humans and executed autonomously by AI agents:
+
+| Template | File | Purpose |
+|---|---|---|
+| **Feature Request** | `feature_request.yml` | Propose new features/enhancements with structured implementation details, acceptance criteria, and test plans |
+| **Bug Report** | `bug_report.yml` | Report bugs with reproduction steps, root cause analysis, proposed fixes, and regression test plans |
+
+**How it works:**
+1. A human creates an issue using one of the templates, filling in all required sections.
+2. An AI agent (e.g., GitHub Copilot) picks up the issue and reads the structured data.
+3. The agent follows the **Project Standards** embedded in the template header and `.github/copilot-instructions.md`.
+4. The agent implements the solution, writes tests per the test plan, and validates with `black . && mypy src/ && pytest`.
+5. All acceptance criteria must be satisfied before the work is considered complete.
+
+**Customizing the templates:**
+- Edit the `.yml` files directly to add/remove/reorder sections.
+- Update the **Project Standards** block in each template if your coding standards change.
+- Keep the templates in sync with `.github/copilot-instructions.md`.
 
 ---
 
@@ -417,6 +442,7 @@ After personalizing the template, tidy up:
 - [ ] Search-and-replace `project_name` across the entire repo.
 - [ ] Rewrite `README.md` with your project's own documentation.
 - [ ] Update `.github/copilot-instructions.md` with your new package name and layout.
+- [ ] Update the **Project Standards** block in `.github/ISSUE_TEMPLATE/feature_request.yml` and `bug_report.yml` if your standards differ.
 - [ ] Update the `LICENSE` file if you want a different license or author.
 - [ ] Delete this `README-template.md` file — it's no longer needed.
 - [ ] Add your initial source code to `src/<your_package>/`.
