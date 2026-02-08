@@ -1,20 +1,68 @@
 # project_name
 
-##
+Brief description of what this project does.
 
-A GitHub template for Python development with Dev Containers: pre-configured for VS Code Remote Development with Python support, dependencies, and streamlined workflows.
+## Features
 
+- Feature 1
+- Feature 2
+- Feature 3
 
+## Requirements
 
+- Python 3.12
 
-## How to customize this template (Delete these instructions after completed)
+## Installation
 
-1. Create your repo from this template on GitHub.
-2. Replace every occurrence of `project_name` with your real project/package name:
-	- Rename the package folder: `mv src/project_name src/<your_package>`.
-	- Update the project name in [pyproject.toml](pyproject.toml) (`[project].name`).
-	- Search/replace `project_name` across the repo (including tests and scripts).
-3. 
-4. Keep the layout: [src/<your_package>](src/project_name) for code, [tests/](tests) for pytest, [scripts/](scripts) for helpers, [Dockerfile](Dockerfile) and [.dockerignore](.dockerignore) at the root.
-5. Run `uv sync --group dev` (postCreate already does this in the devcontainer) and start coding.
-6. Dependencies: runtime in [project.dependencies]; dev-only tools (like black 26.1.0, mypy 1.19.1, pytest 9.0.2) in [dependency-groups.dev]; no requirements.txt files.
+```bash
+git clone https://github.com/<your-user>/project_name.git
+cd project_name
+uv sync --group dev
+```
+
+## Usage
+
+```bash
+python -m project_name
+```
+
+## Development
+
+This project uses [uv](https://docs.astral.sh/uv/) as the package manager and a [Dev Container](https://containers.dev/) for a consistent development environment.
+
+### Quick start
+
+1. Open the repo in VS Code and select **"Reopen in Container"**.
+2. The dev container installs Python 3.12, creates a `.venv`, and syncs all dependencies automatically.
+
+### Project structure
+
+```
+src/project_name/   # Package source code
+tests/              # Tests (pytest)
+scripts/            # Helper scripts
+```
+
+### Run tests
+
+```bash
+pytest
+```
+
+### Format & lint
+
+```bash
+black .
+mypy src/
+```
+
+## Docker
+
+```bash
+docker build -t project_name .
+docker run --rm project_name
+```
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
