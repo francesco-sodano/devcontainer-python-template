@@ -121,6 +121,8 @@ Run a global find-and-replace for `project_name` → `data_pipeline` across all 
 | `scripts/run.sh` | Any references to the package |
 | `README.md` | Project title and description |
 | `.github/copilot-instructions.md` | References to `src/project_name/` in the layout description |
+| `.github/ISSUE_TEMPLATE/feature_request.yml` | Package name in placeholders and Project Standards block |
+| `.github/ISSUE_TEMPLATE/bug_report.yml` | Package name in placeholders and Project Standards block |
 
 You can use this one-liner to find all occurrences:
 
@@ -416,15 +418,36 @@ The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLA
 
 | Template | File | Purpose |
 |---|---|---|
-| **Feature Request** | `feature_request.yml` | Propose new features/enhancements with structured implementation details, acceptance criteria, and test plans |
-| **Bug Report** | `bug_report.yml` | Report bugs with reproduction steps, root cause analysis, proposed fixes, and regression test plans |
+| **Feature Request** | `feature_request.yml` | Propose new features/enhancements with priority, complexity, implementation details, related files, breaking changes flag, acceptance criteria, and test plans |
+| **Bug Report** | `bug_report.yml` | Report bugs with priority, complexity, reproduction steps, current workaround, root cause analysis, proposed fixes, and regression test plans |
+
+Both templates include:
+- **Priority dropdown** (Low / Medium / High) — helps the agent gauge urgency
+- **Estimated Complexity dropdown** (Small / Medium / Large) — helps the agent plan effort
+- **Project Standards block** — coding standards embedded directly in the template header
+- **Dependencies on Other Issues** — prevents the agent from starting blocked work
+- **Acceptance Criteria** with standard quality gates pre-defined
+- **Missing information rule** — the agent must ask for clarification instead of guessing
+
+**Feature Request** additionally includes:
+- **Related Files & Code** — points the agent to existing files to read or extend
+- **Breaking Changes flag** — tells the agent whether backward compatibility must be preserved
+- **Out of Scope** — explicitly prevents the agent from doing unnecessary work
+
+**Bug Report** additionally includes:
+- **Current Workaround** — warns the agent about temporary fixes to preserve or remove
+- **Root Cause Analysis** — saves the agent diagnostic time
+- **Affected Code & Location** — directs the agent to the exact file/function/line
 
 **How it works:**
 1. A human creates an issue using one of the templates, filling in all required sections.
 2. An AI agent (e.g., GitHub Copilot) picks up the issue and reads the structured data.
-3. The agent follows the **Project Standards** embedded in the template header and `.github/copilot-instructions.md`.
-4. The agent implements the solution, writes tests per the test plan, and validates with `black . && mypy src/ && pytest`.
-5. All acceptance criteria must be satisfied before the work is considered complete.
+3. The agent checks for dependencies on other issues before starting.
+4. The agent follows the **Project Standards** embedded in the template header and `.github/copilot-instructions.md`.
+5. The agent reviews related files (features) or affected code (bugs) to understand existing patterns.
+6. The agent implements the solution, writes tests per the test plan, and validates with `black . && mypy src/ && pytest`.
+7. All acceptance criteria must be satisfied before the work is considered complete.
+8. If any information is missing or ambiguous, the agent asks the issue author for clarification.
 
 **Customizing the templates:**
 - Edit the `.yml` files directly to add/remove/reorder sections.

@@ -23,6 +23,30 @@ body:
         - **Validation:** Run `black . && mypy src/ && pytest` before considering work complete.
         - **Missing information:** If any section is incomplete, ambiguous, or lacks detail needed to diagnose and fix the bug, the AI agent MUST ask the issue author for clarification before proceeding. Do NOT guess or make assumptions about unclear requirements.
 
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgent is this bug?
+      options:
+        - "Low — Minor inconvenience, cosmetic, or edge case"
+        - "Medium — Affects functionality but has a workaround"
+        - "High — Blocks usage, data loss, or security issue"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you expect the fix to be?
+      options:
+        - "Small — Likely a one-line or single-file fix"
+        - "Medium — Multiple files or moderate logic changes"
+        - "Large — Deep investigation and significant refactoring needed"
+    validations:
+      required: true
+
   - type: textarea
     id: summary
     attributes:
@@ -92,6 +116,26 @@ body:
         - Related: `src/project_name/utils.py` → `validate_input()`
     validations:
       required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current Workaround
+      description: >
+        Is there a temporary workaround in place? If so, describe it here.
+        The AI agent should be aware of it to avoid breaking it, or to remove it
+        as part of the proper fix.
+      placeholder: |
+        Currently, callers wrap the function in a try/except:
+        ```python
+        try:
+            result = process_data(data)
+        except KeyError:
+            result = default_value
+        ```
+        This workaround should be removed once the fix is in place.
+    validations:
+      required: false
 
   - type: textarea
     id: root-cause
@@ -178,6 +222,19 @@ body:
         - Python version: 3.12.x
         - OS: Ubuntu 24.04 (Dev Container)
         - Dependencies: (output of `uv pip list` if relevant)
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies on Other Issues
+      description: >
+        List any issues that must be completed before this bug can be fixed.
+        The AI agent will check these are resolved before starting work.
+      placeholder: |
+        - Blocked by: #10 (needs the refactored config module first)
+        - Depends on: #15 (upstream fix required)
     validations:
       required: false
 

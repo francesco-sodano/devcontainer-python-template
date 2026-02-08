@@ -93,20 +93,27 @@ The project in this repository has the following specifications:
 ## Issue Templates & Autonomous Workflow
 This repository uses structured GitHub Issue Templates designed for AI agents to work autonomously:
 
-- **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Used when proposing new features or enhancements. Contains structured sections for summary, motivation, proposed solution, acceptance criteria, test plan, technical notes, out-of-scope items, and references.
-- **Bug Report** (`.github/ISSUE_TEMPLATE/bug_report.yml`): Used when reporting bugs. Contains structured sections for bug summary, steps to reproduce, expected/actual behavior, affected code location, root cause analysis, proposed fix, acceptance criteria, test plan, environment, and references.
+- **Feature Request** (`.github/ISSUE_TEMPLATE/feature_request.yml`): Used when proposing new features or enhancements. Contains structured sections for priority, estimated complexity, summary, motivation, proposed solution, acceptance criteria, test plan, related files & code, breaking changes flag, technical notes, out-of-scope items, dependencies on other issues, and references.
+- **Bug Report** (`.github/ISSUE_TEMPLATE/bug_report.yml`): Used when reporting bugs. Contains structured sections for priority, estimated complexity, bug summary, steps to reproduce, expected/actual behavior, affected code location, current workaround, root cause analysis, proposed fix, acceptance criteria, test plan, dependencies on other issues, environment, and references.
+
+Both templates embed the project's coding standards directly in the header so the AI agent sees them immediately.
 
 ### Working from an Issue
 When assigned a GitHub Issue created from one of these templates, follow this workflow:
 1. **Read the full issue** — every section contains implementation-critical information.
-2. **Follow the project standards** embedded in the issue template header (code style, testing, type checking, etc.).
-3. **Follow the Proposed Solution / Proposed Fix** — the human author has specified the approach; implement it as described.
-4. **Satisfy all Acceptance Criteria** — treat these as a mandatory checklist. Every box must be checked.
-5. **Implement the Test Plan** — write the exact tests described in the issue.
-6. **Respect Out of Scope** (features) — do NOT implement anything listed there.
-7. **Run validation** — execute `black . && mypy src/ && pytest` and ensure zero errors before submitting.
-8. **For bug fixes** — always write a failing test FIRST that reproduces the bug, then implement the fix.
-9. **Ask for missing information** — if any section of the issue is incomplete, ambiguous, or lacks the detail needed to implement the solution, ask the issue author for clarification before proceeding. Do NOT guess or make assumptions about unclear requirements.
+2. **Check dependencies** — if the issue lists dependencies on other issues, verify they are resolved before starting.
+3. **Assess priority and complexity** — use these to gauge effort and plan accordingly.
+4. **Follow the project standards** embedded in the issue template header (code style, testing, type checking, etc.).
+5. **Review related files** (features) or **affected code** (bugs) — read these files first to understand existing patterns.
+6. **Check for breaking changes** (features) — if flagged, ensure backward compatibility is handled as described.
+7. **Check for workarounds** (bugs) — be aware of any temporary workarounds to avoid breaking them, or remove them as part of the fix.
+8. **Follow the Proposed Solution / Proposed Fix** — the human author has specified the approach; implement it as described.
+9. **Satisfy all Acceptance Criteria** — treat these as a mandatory checklist. Every box must be checked.
+10. **Implement the Test Plan** — write the exact tests described in the issue.
+11. **Respect Out of Scope** (features) — do NOT implement anything listed there.
+12. **Run validation** — execute `black . && mypy src/ && pytest` and ensure zero errors before submitting.
+13. **For bug fixes** — always write a failing test FIRST that reproduces the bug, then implement the fix.
+14. **Ask for missing information** — if any section of the issue is incomplete, ambiguous, or lacks the detail needed to implement the solution, ask the issue author for clarification before proceeding. Do NOT guess or make assumptions about unclear requirements.
 
 ## Communication
 - **Tone:** Always communicate in a casual, friendly, yet professional tone.

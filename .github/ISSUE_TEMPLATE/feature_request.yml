@@ -23,6 +23,30 @@ body:
         - **Validation:** Run `black . && mypy src/ && pytest` before considering work complete.
         - **Missing information:** If any section is incomplete, ambiguous, or lacks detail needed to implement the feature, the AI agent MUST ask the issue author for clarification before proceeding. Do NOT guess or make assumptions about unclear requirements.
 
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgent is this feature?
+      options:
+        - "Low — Nice to have, no deadline"
+        - "Medium — Important but not blocking"
+        - "High — Blocking other work or critical path"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you expect this feature to be?
+      options:
+        - "Small — Single file, < 50 lines of code"
+        - "Medium — Multiple files, moderate logic"
+        - "Large — Significant changes across the codebase"
+    validations:
+      required: true
+
   - type: textarea
     id: summary
     attributes:
@@ -108,6 +132,34 @@ body:
       required: true
 
   - type: textarea
+    id: related-files
+    attributes:
+      label: Related Files & Code
+      description: >
+        List existing files, modules, or functions that the AI agent should read
+        or extend when implementing this feature.
+        This saves investigation time and ensures the agent builds on existing patterns.
+      placeholder: |
+        - `src/project_name/utils.py` — Contains helper functions to reuse
+        - `src/project_name/__init__.py` — Must be updated to export the new feature
+        - `tests/test_utils.py` — Follow the same test patterns used here
+    validations:
+      required: false
+
+  - type: dropdown
+    id: breaking-changes
+    attributes:
+      label: Breaking Changes
+      description: >
+        Does this feature introduce breaking changes to existing APIs, interfaces, or behavior?
+        If yes, describe what breaks in the Proposed Solution section.
+      options:
+        - "No — Fully backward compatible"
+        - "Yes — Existing behavior or API will change (describe in Proposed Solution)"
+    validations:
+      required: true
+
+  - type: textarea
     id: technical-notes
     attributes:
       label: Technical Notes & Constraints
@@ -134,6 +186,19 @@ body:
         - Do NOT modify the Dockerfile
         - Do NOT add CLI arguments
         - Do NOT refactor existing modules
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies on Other Issues
+      description: >
+        List any issues that must be completed before this feature can be implemented.
+        The AI agent will check these are resolved before starting work.
+      placeholder: |
+        - Blocked by: #10 (needs the new config module first)
+        - Depends on: #15 (API client must be refactored)
     validations:
       required: false
 
