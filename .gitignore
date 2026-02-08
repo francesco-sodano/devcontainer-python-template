@@ -213,3 +213,6 @@ __marimo__/
 # OS cruft
 .DS_Store
 Thumbs.db
+
+# GitHub Memory
+.github/instructions/memory.instruction.md
