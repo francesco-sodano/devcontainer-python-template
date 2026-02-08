@@ -52,7 +52,6 @@
 				"github.copilot-chat",
 				"github.vscode-pull-request-github",
 				"ms-vscode.azurecli",
-				"google.geminicodeassist",
 				"ms-azuretools.vscode-azure-github-copilot",
 				"ms-azuretools.vscode-azure-mcp-server",
 				"ms-azuretools.vscode-azureresourcegroups",
