@@ -84,6 +84,7 @@ body:
            - Function `do_something(param: str) -> bool` that ...
         2. Update `src/project_name/__init__.py` to export ...
         3. Add configuration in `pyproject.toml` if needed.
+      render: markdown
     validations:
       required: true
 
@@ -111,6 +112,7 @@ body:
         - [ ] Code passes `mypy src/` with no errors
         - [ ] No hardcoded secrets or credentials
         - [ ] `.github/copilot-instructions.md` standards are followed
+      render: markdown
     validations:
       required: true
 
@@ -128,6 +130,7 @@ body:
         - `test_do_something_with_valid_input`: Input "hello" → returns True
         - `test_do_something_with_empty_string`: Input "" → raises ValueError
         - `test_do_something_with_none`: Input None → raises TypeError
+      render: markdown
     validations:
       required: true
 
@@ -143,6 +146,7 @@ body:
         - `src/project_name/utils.py` — Contains helper functions to reuse
         - `src/project_name/__init__.py` — Must be updated to export the new feature
         - `tests/test_utils.py` — Follow the same test patterns used here
+      render: markdown
     validations:
       required: false
 
@@ -172,6 +176,7 @@ body:
         - No new runtime dependencies (dev dependencies are OK)
         - Should follow existing code patterns in `src/project_name/`
         - Reference: https://docs.python.org/3.12/library/...
+      render: markdown
     validations:
       required: false
 

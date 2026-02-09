@@ -114,6 +114,7 @@ body:
         - File: `src/project_name/module.py`
         - Function: `process_data()` (line ~42)
         - Related: `src/project_name/utils.py` → `validate_input()`
+      render: markdown
     validations:
       required: true
 
@@ -134,6 +135,7 @@ body:
             result = default_value
         ```
         This workaround should be removed once the fix is in place.
+      render: markdown
     validations:
       required: false
 
@@ -148,6 +150,7 @@ body:
         The function accesses `data["name"]` directly without checking
         if the key exists. It should use `data.get("name")` with a default
         or validate the input before accessing it.
+      render: markdown
     validations:
       required: false
 
@@ -165,6 +168,7 @@ body:
            - Raise `ValueError` with a descriptive message if keys are missing
         2. Add a default value fallback using `data.get("name", "Unknown")`
         3. Update the docstring to document the required keys
+      render: markdown
     validations:
       required: true
 
@@ -191,6 +195,7 @@ body:
         - [ ] Code passes `mypy src/` with no errors
         - [ ] No hardcoded secrets or credentials
         - [ ] `.github/copilot-instructions.md` standards are followed
+      render: markdown
     validations:
       required: true
 
@@ -209,6 +214,7 @@ body:
         - `test_process_data_missing_age_key`: Input `{"name": "Alice"}` → raises `ValueError`
         - `test_process_data_valid_input`: Input `{"name": "Alice", "age": 30}` → returns expected result (regression)
         - `test_process_data_empty_dict`: Input `{}` → raises `ValueError`
+      render: markdown
     validations:
       required: true
 

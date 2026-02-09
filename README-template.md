@@ -418,8 +418,8 @@ The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLA
 
 | Template | File | Purpose |
 |---|---|---|
-| **Feature Request** | `feature_request.yml` | Propose new features/enhancements with priority, complexity, implementation details, related files, breaking changes flag, acceptance criteria, and test plans |
-| **Bug Report** | `bug_report.yml` | Report bugs with priority, complexity, reproduction steps, current workaround, root cause analysis, proposed fixes, and regression test plans |
+| **Feature Request** | `.github/ISSUE_TEMPLATE/feature_request.yml` | Propose new features/enhancements with priority, complexity, implementation details, related files, breaking changes flag, acceptance criteria, and test plans |
+| **Bug Report** | `.github/ISSUE_TEMPLATE/bug_report.yml` | Report bugs with priority, complexity, reproduction steps, current workaround, root cause analysis, proposed fixes, and regression test plans |
 
 Both templates include:
 - **Priority dropdown** (Low / Medium / High) — helps the agent gauge urgency
