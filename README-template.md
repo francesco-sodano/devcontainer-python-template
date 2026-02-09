@@ -122,6 +122,7 @@ Run a global find-and-replace for `project_name` → `data_pipeline` across all 
 | `README.md` | Project title and description |
 | `.github/copilot-instructions.md` | References to `src/project_name/` in the layout description |
 | `.github/ISSUE_TEMPLATE/feature_request.yml` | Package name in placeholders and Project Standards block |
+| `.github/ISSUE_TEMPLATE/config.yml` | Repository URL and other issue template metadata placeholders |
 | `.github/ISSUE_TEMPLATE/bug_report.yml` | Package name in placeholders and Project Standards block |
 
 You can use this one-liner to find all occurrences:
@@ -412,20 +413,16 @@ The template includes a `.github/dependabot.yml` that automatically checks for u
 
 `.github/copilot-instructions.md` provides project-aware context to GitHub Copilot and AI agents. Update the layout references and project name after renaming.
 
-### Issue Templates (AI Agent Workflow)
+### Issue Templates
 
-The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLATE/` designed to be filled out by humans and executed autonomously by AI agents:
+The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLATE/`. They are designed to work with the AI agent workflow, which is documented in detail in `.github/copilot-instructions.md` (the canonical source for the autonomous workflow and process).
 
 | Template | File | Purpose |
 |---|---|---|
 | **Feature Request** | `.github/ISSUE_TEMPLATE/feature_request.yml` | Propose new features/enhancements with priority, complexity, implementation details, related files, breaking changes flag, acceptance criteria, and test plans |
 | **Bug Report** | `.github/ISSUE_TEMPLATE/bug_report.yml` | Report bugs with priority, complexity, reproduction steps, current workaround, root cause analysis, proposed fixes, and regression test plans |
 
-Both templates include:
-- **Priority dropdown** (Low / Medium / High) — helps the agent gauge urgency
-- **Estimated Complexity dropdown** (Small / Medium / Large) — helps the agent plan effort
-- **Project Standards block** — coding standards embedded directly in the template header
-- **Dependencies on Other Issues** — prevents the agent from starting blocked work
+For specifics on how AI agents should interpret and execute these templates (including priorities, complexity, project standards, and dependencies), refer to `.github/copilot-instructions.md`.
 - **Acceptance Criteria** with standard quality gates pre-defined
 - **Missing information rule** — the agent must ask for clarification instead of guessing
 
@@ -443,15 +440,10 @@ Both templates include:
 1. A human creates an issue using one of the templates, filling in all required sections.
 2. An AI agent (e.g., GitHub Copilot) picks up the issue and reads the structured data.
 3. The agent checks for dependencies on other issues before starting.
-4. The agent follows the **Project Standards** embedded in the template header and `.github/copilot-instructions.md`.
-5. The agent reviews related files (features) or affected code (bugs) to understand existing patterns.
-6. The agent implements the solution, writes tests per the test plan, and validates with `black . && mypy src/ && pytest`.
-7. All acceptance criteria must be satisfied before the work is considered complete.
-8. If any information is missing or ambiguous, the agent asks the issue author for clarification.
-
-**Customizing the templates:**
-- Edit the `.yml` files directly to add/remove/reorder sections.
-- Update the **Project Standards** block in each template if your coding standards change.
+**How it works (high level):**
+- A human creates an issue using one of the templates, filling in the structured fields.
+- An AI agent (e.g., GitHub Copilot) reads the issue, applies the project standards, and executes the described workflow.
+- The detailed, canonical workflow and standards for agents are defined in `.github/copilot-instructions.md`; keep that file as the source of truth.
 - Keep the templates in sync with `.github/copilot-instructions.md`.
 
 ---
