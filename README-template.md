@@ -45,8 +45,12 @@ This document explains how to create a new Python 3.12 project from the **devcon
 │   └── scripts/
 │       └── postCreate.sh       # Runs after container creation (installs Python, syncs deps)
 ├── .github/
-│   ├── copilot-instructions.md # GitHub Copilot custom instructions
+│   ├── copilot-instructions.md # GitHub Copilot & AI agent custom instructions
 │   ├── dependabot.yml          # Dependabot config (uv, GitHub Actions, devcontainers)
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── config.yml          # Template chooser config (disables blank issues)
+│   │   ├── feature_request.yml # Feature request template (for AI agents)
+│   │   └── bug_report.yml      # Bug report template (for AI agents)
 │   └── workflows/
 │       └── update-lockfile.yml # Auto-updates uv.lock on dependency changes
 ├── scripts/
@@ -117,6 +121,9 @@ Run a global find-and-replace for `project_name` → `data_pipeline` across all 
 | `scripts/run.sh` | Any references to the package |
 | `README.md` | Project title and description |
 | `.github/copilot-instructions.md` | References to `src/project_name/` in the layout description |
+| `.github/ISSUE_TEMPLATE/feature_request.yml` | Package name in placeholders and Project Standards block |
+| `.github/ISSUE_TEMPLATE/config.yml` | Repository URL and other issue template metadata placeholders |
+| `.github/ISSUE_TEMPLATE/bug_report.yml` | Package name in placeholders and Project Standards block |
 
 You can use this one-liner to find all occurrences:
 
@@ -281,6 +288,8 @@ The template comes with a fully configured [Dev Container](https://containers.de
 - Python formatter: `black`
 - Linting: `mypy` enabled
 - Testing: `pytest` enabled
+- **Copilot agent auto-approve:** enabled (`chat.tools.global.autoApprove: true`) — agent tools run without manual confirmation. Set to `false` in `devcontainer.json` if you prefer to approve each tool invocation.
+- **Copilot agent max requests:** `100` per session (`chat.agent.maxRequests`) — controls how many requests the agent can make in a single session. Lower this value for tighter control.
 
 ### How to use
 
@@ -404,7 +413,38 @@ The template includes a `.github/dependabot.yml` that automatically checks for u
 
 ### Copilot instructions
 
-`.github/copilot-instructions.md` provides project-aware context to GitHub Copilot. Update the layout references and project name after renaming.
+`.github/copilot-instructions.md` provides project-aware context to GitHub Copilot and AI agents. Update the layout references and project name after renaming.
+
+### Issue Templates
+
+The template includes structured GitHub Issue Templates in `.github/ISSUE_TEMPLATE/`. They are designed to work with the AI agent workflow, which is documented in detail in `.github/copilot-instructions.md` (the canonical source for the autonomous workflow and process).
+
+| Template | File | Purpose |
+|---|---|---|
+| **Feature Request** | `.github/ISSUE_TEMPLATE/feature_request.yml` | Propose new features/enhancements with priority, complexity, implementation details, related files, breaking changes flag, acceptance criteria, and test plans |
+| **Bug Report** | `.github/ISSUE_TEMPLATE/bug_report.yml` | Report bugs with priority, complexity, reproduction steps, current workaround, root cause analysis, proposed fixes, and regression test plans |
+
+For specifics on how AI agents should interpret and execute these templates (including priorities, complexity, project standards, and dependencies), refer to `.github/copilot-instructions.md`.
+- **Acceptance Criteria** with standard quality gates pre-defined
+- **Missing information rule** — the agent must ask for clarification instead of guessing
+
+**Feature Request** additionally includes:
+- **Related Files & Code** — points the agent to existing files to read or extend
+- **Breaking Changes flag** — tells the agent whether backward compatibility must be preserved
+- **Out of Scope** — explicitly prevents the agent from doing unnecessary work
+
+**Bug Report** additionally includes:
+- **Current Workaround** — warns the agent about temporary fixes to preserve or remove
+- **Root Cause Analysis** — saves the agent diagnostic time
+- **Affected Code & Location** — directs the agent to the exact file/function/line
+
+**How it works:**
+
+1. A human creates an issue using one of the templates, filling in all required sections.
+2. An AI agent (e.g., GitHub Copilot) reads the issue, applies the project standards, and checks for dependencies on other issues before starting.
+3. The agent follows the canonical workflow defined in `.github/copilot-instructions.md` to implement the solution.
+
+Keep the templates in sync with `.github/copilot-instructions.md` — that file is the source of truth for agent standards and workflow.
 
 ---
 
@@ -417,6 +457,8 @@ After personalizing the template, tidy up:
 - [ ] Search-and-replace `project_name` across the entire repo.
 - [ ] Rewrite `README.md` with your project's own documentation.
 - [ ] Update `.github/copilot-instructions.md` with your new package name and layout.
+- [ ] Update `.github/ISSUE_TEMPLATE/config.yml` — replace `REPLACE_WITH_OWNER/REPLACE_WITH_REPO` with your actual GitHub owner and repo name.
+- [ ] Update the **Project Standards** block in `.github/ISSUE_TEMPLATE/feature_request.yml` and `bug_report.yml` if your standards differ.
 - [ ] Update the `LICENSE` file if you want a different license or author.
 - [ ] Delete this `README-template.md` file — it's no longer needed.
 - [ ] Add your initial source code to `src/<your_package>/`.
