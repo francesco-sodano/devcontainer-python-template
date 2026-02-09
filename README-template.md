@@ -437,14 +437,12 @@ For specifics on how AI agents should interpret and execute these templates (inc
 - **Affected Code & Location** — directs the agent to the exact file/function/line
 
 **How it works:**
+
 1. A human creates an issue using one of the templates, filling in all required sections.
-2. An AI agent (e.g., GitHub Copilot) picks up the issue and reads the structured data.
-3. The agent checks for dependencies on other issues before starting.
-**How it works (high level):**
-- A human creates an issue using one of the templates, filling in the structured fields.
-- An AI agent (e.g., GitHub Copilot) reads the issue, applies the project standards, and executes the described workflow.
-- The detailed, canonical workflow and standards for agents are defined in `.github/copilot-instructions.md`; keep that file as the source of truth.
-- Keep the templates in sync with `.github/copilot-instructions.md`.
+2. An AI agent (e.g., GitHub Copilot) reads the issue, applies the project standards, and checks for dependencies on other issues before starting.
+3. The agent follows the canonical workflow defined in `.github/copilot-instructions.md` to implement the solution.
+
+Keep the templates in sync with `.github/copilot-instructions.md` — that file is the source of truth for agent standards and workflow.
 
 ---
 
