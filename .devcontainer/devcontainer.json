@@ -32,20 +32,22 @@
 
 	// Configure tool-specific properties.
 	"customizations": {
-		"settings": {
-			"files.eol": "\n",
-			"editor.formatOnSave": true,
-			"python.testing.pytestArgs": ["."],
-			"python.testing.unittestEnabled": false,
-			"python.testing.pytestEnabled": true,
-			"python.formatting.provider": "black",
-			"python.linting.mypyEnabled": true,
-			"python.linting.enabled": true,
-			"remote.extensionKind": {
-				"ms-azuretools.vscode-docker": "workspace"
-			}
-		},
 		"vscode": {
+			"settings": {
+				"files.eol": "\n",
+				"editor.formatOnSave": true,
+				"chat.tools.global.autoApprove": true,
+				"chat.agent.maxRequests": 100,
+				"python.testing.pytestArgs": ["."],
+				"python.testing.unittestEnabled": false,
+				"python.testing.pytestEnabled": true,
+				"python.formatting.provider": "black",
+				"python.linting.mypyEnabled": true,
+				"python.linting.enabled": true,
+				"remote.extensionKind": {
+					"ms-azuretools.vscode-docker": "workspace"
+				}
+			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"github.copilot",
