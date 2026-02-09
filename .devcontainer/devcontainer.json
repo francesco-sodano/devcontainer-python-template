@@ -36,6 +36,9 @@
 			"settings": {
 				"files.eol": "\n",
 				"editor.formatOnSave": true,
+				// Copilot agent settings: autoApprove lets agent tools run without manual
+				// confirmation; maxRequests caps the number of agent requests per session.
+				// Set autoApprove to false or lower maxRequests if you prefer manual control.
 				"chat.tools.global.autoApprove": true,
 				"chat.agent.maxRequests": 100,
 				"python.testing.pytestArgs": ["."],

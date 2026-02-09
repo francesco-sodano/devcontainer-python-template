@@ -288,6 +288,8 @@ The template comes with a fully configured [Dev Container](https://containers.de
 - Python formatter: `black`
 - Linting: `mypy` enabled
 - Testing: `pytest` enabled
+- **Copilot agent auto-approve:** enabled (`chat.tools.global.autoApprove: true`) — agent tools run without manual confirmation. Set to `false` in `devcontainer.json` if you prefer to approve each tool invocation.
+- **Copilot agent max requests:** `100` per session (`chat.agent.maxRequests`) — controls how many requests the agent can make in a single session. Lower this value for tighter control.
 
 ### How to use
 
@@ -455,6 +457,7 @@ After personalizing the template, tidy up:
 - [ ] Search-and-replace `project_name` across the entire repo.
 - [ ] Rewrite `README.md` with your project's own documentation.
 - [ ] Update `.github/copilot-instructions.md` with your new package name and layout.
+- [ ] Update `.github/ISSUE_TEMPLATE/config.yml` — replace `REPLACE_WITH_OWNER/REPLACE_WITH_REPO` with your actual GitHub owner and repo name.
 - [ ] Update the **Project Standards** block in `.github/ISSUE_TEMPLATE/feature_request.yml` and `bug_report.yml` if your standards differ.
 - [ ] Update the `LICENSE` file if you want a different license or author.
 - [ ] Delete this `README-template.md` file — it's no longer needed.
